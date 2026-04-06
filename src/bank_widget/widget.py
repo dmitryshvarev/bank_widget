@@ -17,7 +17,7 @@ def mask_account_card(type_and_number: str) -> str:
 
 def get_date(input_date: str) -> str:
     """Форматирует строку с датой"""
-    date_format_list = input_date[:10].split('-')
+    date_format_list = input_date[:10].split("-")
     date_format_list.reverse()
 
     return ".".join(date_format_list)
