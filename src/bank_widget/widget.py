@@ -13,3 +13,11 @@ def mask_account_card(type_and_number: str) -> str:
         mask_number_list.append(masks.get_mask_card_number(type_and_number_list[-1]))
 
     return " ".join(mask_number_list)
+
+
+def get_date(input_date: str) -> str:
+    """Форматирует строку с датой"""
+    date_format_list = input_date[:10].split('-')
+    date_format_list.reverse()
+
+    return ".".join(date_format_list)
