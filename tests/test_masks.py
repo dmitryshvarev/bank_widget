@@ -16,6 +16,12 @@ def test_get_mask_card_number(card_number, mask_card_number):
     assert get_mask_card_number(card_number) == mask_card_number
 
 
+def test_get_mask_card_number_invalid_type():
+    with pytest.raises(TypeError) as exc_info:
+        get_mask_card_number(7000792289606361)
+    assert str(exc_info.value) == "Функция принимает один аргумент типа str"
+
+
 def test_get_mask_standard_user_account(standard_user_account):
     assert get_mask_account(standard_user_account) == "**4305"
 
@@ -26,3 +32,9 @@ def test_get_mask_standard_user_account(standard_user_account):
                                                         ("", "")])
 def test_get_mask_account(user_account, mask_account):
     assert get_mask_account(user_account) == mask_account
+
+
+def test_get_mask_account_invalid_type():
+    with pytest.raises(TypeError) as exc_info:
+        get_mask_account([])
+    assert str(exc_info.value) == "Функция принимает один аргумент типа str"
