@@ -16,3 +16,7 @@ https://github.com/dmitryshvarev/bank_widget.git
 pip install poetry
 poetry install
 ```
+## Документация:
+
+- отчет о покрытии кода тестированием находится в папке htmlcov в файле с названием 
+index.html
