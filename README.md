@@ -16,3 +16,9 @@ https://github.com/dmitryshvarev/bank_widget.git
 pip install poetry
 poetry install
 ```
+## Тестирование:
+
+- с помощью библиотеки pytest в проекте протестированы модули masks.py, widget.py, processing.py
+- все тесты выполнены успешно
+- с помощью pytest-cov сгенерирован отчет о покрытии кода тестированием, который находится в папке htmlcov в файле с названием 
+index.html
