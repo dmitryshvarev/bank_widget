@@ -1,4 +1,6 @@
-from src.bank_widget.generators import filter_by_currency, transaction_descriptions
+import pytest
+
+from src.bank_widget.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
 def test_filter_by_currency_usd(transactions_):
@@ -78,3 +80,17 @@ def test_transaction_descriptions(transactions_):
                                                              "Перевод с карты на карту",
                                                              "Перевод организации",
                                                              ]
+
+
+@pytest.mark.parametrize(
+    "begin_, end_, card_num",
+    [
+        (1, 3, ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]),
+        (10**16-3, 10**16-1, ["9999 9999 9999 9997", "9999 9999 9999 9998", "9999 9999 9999 9999"]),
+        (0, 3, []),
+        (10**16-3, 10**16, []),
+        (2, 1, []),
+    ],
+)
+def test_card_number_generator(begin_, end_, card_num):
+    assert list(card_number_generator(begin_, end_)) == card_num
