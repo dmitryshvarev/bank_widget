@@ -1,4 +1,4 @@
-from src.bank_widget.generators import filter_by_currency
+from src.bank_widget.generators import filter_by_currency, transaction_descriptions
 
 
 def test_filter_by_currency_usd(transactions_):
@@ -69,3 +69,12 @@ def test_filter_by_currency_rub(transactions_):
                 "from": "Visa Platinum 1246377376343588",
                 "to": "Счет 14211924144426031657"
             }
+
+
+def test_transaction_descriptions(transactions_):
+    assert list(transaction_descriptions(transactions_)) == ["Перевод организации",
+                                                             "Перевод со счета на счет",
+                                                             "Перевод со счета на счет",
+                                                             "Перевод с карты на карту",
+                                                             "Перевод организации",
+                                                             ]
