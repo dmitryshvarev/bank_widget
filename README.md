@@ -18,7 +18,7 @@ poetry install
 ```
 ## Тестирование:
 
-- с помощью библиотеки pytest в проекте протестированы модули masks.py, widget.py, processing.py
+- с помощью библиотеки pytest в проекте протестированы модули masks.py, widget.py, processing.py, generators.py
 - все тесты выполнены успешно
 - с помощью pytest-cov сгенерирован отчет о покрытии кода тестированием, который находится в папке htmlcov в файле с названием 
 index.html
