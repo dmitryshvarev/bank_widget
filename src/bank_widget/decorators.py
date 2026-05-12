@@ -1,5 +1,5 @@
 from functools import wraps
-from typing import Optional, Callable, Any
+from typing import Any, Callable, Optional
 
 
 def log(filename: Optional[str] = None) -> Callable[[Callable], Callable]:
@@ -10,6 +10,7 @@ def log(filename: Optional[str] = None) -> Callable[[Callable], Callable]:
                      Если не передаётся, информация выводится в консоль.
     :return: Декоратор, который оборачивает исходную функцию.
     """
+
     def decorator(func: Callable) -> Callable:
 
         @wraps(func)  # Сохраняет docstring и __name__ оригинальной функции
@@ -26,7 +27,7 @@ def log(filename: Optional[str] = None) -> Callable[[Callable], Callable]:
                 log_message = f"{func.__name__} error ({type(error).__name__}: {error}). Inputs: {args}, {kwargs}"
 
             if filename:
-                with open(f'../{filename}', 'a', encoding="UTF-8") as file:
+                with open(f"../{filename}", "a", encoding="UTF-8") as file:
                     file.write(f"{log_message}\n")
             else:
                 print(log_message)

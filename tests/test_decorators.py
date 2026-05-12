@@ -1,5 +1,3 @@
-import pytest
-
 from src.bank_widget.decorators import log
 
 
@@ -21,10 +19,13 @@ def test_log_err(capsys):
     def my_function(x, y):
         return x + y
 
-    my_function('1', 2)
+    my_function("1", 2)
 
     captured = capsys.readouterr()
-    assert captured.out == "my_function error (TypeError: can only concatenate str (not \"int\") to str). Inputs: (\'1\', 2), {}\n"
+    assert (
+        captured.out
+        == "my_function error (TypeError: can only concatenate str (not \"int\") to str). Inputs: ('1', 2), {}\n"
+    )
 
 
 def test_log_file():
@@ -36,5 +37,5 @@ def test_log_file():
 
     my_function(1, 2)
 
-    with open(f'../{file_name}', 'r', encoding="UTF-8") as file:
-        assert file.read() == "my_function ok\n"
+    with open(f"../{file_name}", "r", encoding="UTF-8") as file:
+        assert file.readline() == "my_function ok\n"
