@@ -1,7 +1,7 @@
-
 import json
-
 from typing import Any, Dict, List
+
+from .external_api import get_exchange_rate
 
 
 def load_transactions(path: str) -> List[Dict[str, Any]]:
@@ -21,3 +21,19 @@ def load_transactions(path: str) -> List[Dict[str, Any]]:
         return transactions_data
 
     return transactions_data
+
+
+def amount_in_rub(transaction: Dict[str, Any]) -> float:
+    """Возвращает сумму транзакции в рублях"""
+
+    amount = 0
+
+    currency_code = transaction.get("operationAmount").get("currency").get("code")
+
+    if currency_code == "RUB":
+        amount = float(transaction.get("operationAmount").get("amount"))
+    else:
+        exchange_rate = get_exchange_rate()["Valute"][currency_code]["Value"]
+        amount = round(float(transaction.get("operationAmount").get("amount")) * exchange_rate, 2)
+
+    return amount
