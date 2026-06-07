@@ -4,10 +4,9 @@ from typing import Any, Dict, List
 
 from src.bank_widget.external_api import get_exchange_rate
 
-
 logger = logging.getLogger(__name__)
-file_handler = logging.FileHandler(r'..\..\logs\utils.log', mode='w', encoding='utf-8')
-file_formatter = logging.Formatter('%(asctime)s %(filename)s %(levelname)s: %(message)s')
+file_handler = logging.FileHandler(r"..\..\logs\utils.log", mode="w", encoding="utf-8")
+file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
@@ -41,15 +40,15 @@ def amount_in_rub(transaction: Dict[str, Any]) -> float:
 
     currency_code = transaction.get("operationAmount").get("currency").get("code")
     if currency_code:
-        logger.info('Получаем данные о сумме транзакции')
+        logger.info("Получаем данные о сумме транзакции")
         if currency_code == "RUB":
-            logger.info('Данная транзакция в рублях')
+            logger.info("Данная транзакция в рублях")
             amount = float(transaction.get("operationAmount").get("amount"))
         else:
-            logger.info('Данная транзакция не в рублях. Происходит обращение к API')
+            logger.info("Данная транзакция не в рублях. Происходит обращение к API")
             exchange_rate = get_exchange_rate()["Valute"][currency_code]["Value"]
             amount = round(float(transaction.get("operationAmount").get("amount")) * exchange_rate, 2)
     else:
-        logger.error('Неверные данные о транзакции')
+        logger.error("Неверные данные о транзакции")
 
     return amount
