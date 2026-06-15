@@ -2,7 +2,7 @@
 
 ## Описание:
 
-Проект "bank_widget" - это приложение на Python, которое позволяет пользователю совершать финансовые действия или просматривать информацию без перехода на полноценную страницу банка.
+Проект "bank_widget" - это приложение на Python, которое позволяет пользователю совершать финансовые действия или просматривать информацию без перехода на полноценную страницу банка. 
 
 ## Установка:
 
@@ -14,11 +14,14 @@ https://github.com/dmitryshvarev/bank_widget.git
 2. Установите зависимости:
 ```
 pip install poetry
-poetry install
+poetry install/
+poetry add pandas
+poetry add openpyxl
+
 ```
 ## Тестирование:
 
-- с помощью библиотеки pytest в проекте протестированы модули masks.py, widget.py, processing.py, generators.py, decorators.py
+- с помощью библиотеки pytest в проекте протестированы модули masks.py, widget.py, processing.py, generators.py, decorators.py, finance_utils.py
 - все тесты выполнены успешно
 - с помощью pytest-cov сгенерирован отчет о покрытии кода тестированием, который находится в папке htmlcov в файле с названием 
 index.html
