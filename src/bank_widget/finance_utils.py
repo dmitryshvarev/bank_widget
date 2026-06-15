@@ -15,7 +15,3 @@ def load_transactions_from_excel(path_to_excel: str) -> List[Dict[str, Union[str
     """Считывает данные о финансовых операциях из Excel"""
     transactions_df = pd.read_excel(path_to_excel)
     return transactions_df.to_dict(orient="records")
-
-
-if __name__ == "__main__":
-    print(load_transactions_from_excel(r"..\..\data\transactions_excel.xlsx")[:2])
