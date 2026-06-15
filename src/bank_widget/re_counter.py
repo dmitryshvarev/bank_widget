@@ -22,11 +22,3 @@ def process_bank_operations(transactions_data: List[Dict[str, Union[str, float]]
     counted = Counter(categories_list)
 
     return counted
-
-
-
-
-
-
-
-
