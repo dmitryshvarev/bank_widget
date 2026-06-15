@@ -15,6 +15,16 @@ def process_bank_search(transactions_data: List[Dict[str, Union[str, float]]], s
     return found_transactions
 
 
+def process_bank_operations(transactions_data: List[Dict[str, Union[str, float]]], categories: list[str]) -> dict[str, int]:
+    """Подсчет количества банковских операций определенного типа"""
+    categories_list = [transaction.get("description", "Описание не найдено") for transaction in transactions_data if transaction.get("description", "Описание не найдено") in categories]
+
+    counted = Counter(categories_list)
+
+    return counted
+
+
+
 
 
 
